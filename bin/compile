@@ -45,19 +45,19 @@ tar -xf libssh2-$LIBSSH2_VERSION.tar.gz
 cd libssh2-libssh2-$LIBSSH2_VERSION
 ls -la .
 ./buildconf
-./configure --prefix=$BUILD_DIR/vendor 2>&1 | indent
+./configure --disable-dependency-tracking --prefix=$BUILD_DIR/vendor 2>&1 | indent
 make 2>&1 | indent
 make install  2>&1 | indent
 
 ### Download, make and install
-
+cd $CACHE_DIR
 echo "-----> Downloading curl $CURL_VERSION"
 DOWNLOAD_URL="http://archive.ubuntu.com/ubuntu/pool/main/c/curl/curl_$CURL_VERSION.orig.tar.gz"
 curl -sL "$DOWNLOAD_URL" > curl_$CURL_VERSION.orig.tar.gz 2>&1 | indent
 tar -xf curl_$CURL_VERSION.orig.tar.gz
 pushd curl-$CURL_VERSION
 echo "-----> Configuring curl with ssl and libssh2"
-./configure --prefix=$BUILD_DIR/vendor --with-ssl --with-libssh2=$BUILD_DIR/vendor/libssh2 2>&1 | indent
+./configure --prefix=$BUILD_DIR/vendor --with-ssl --with-libssh2=$BUILD_DIR/vendor 2>&1 | indent
 echo "-----> Building curl"
 make 2>&1 | indent
 echo "-----> Installing curl"
