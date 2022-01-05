@@ -15,7 +15,7 @@ indent() {
 
 ### Constants
 
-CURL_VERSION=7.59.0
+CURL_VERSION=7.81.0
 LIBSSH2_VERSION=1.8.0
 
 ### Configure directories
